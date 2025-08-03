@@ -1,31 +1,27 @@
-import {} from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../Button/Button";
 import cls from "./QuestionCard.module.css";
 
-export const QuestionCard = () => {
+export const QuestionCard = ({ card }) => {
+  const navigate = useNavigate();
+
   return (
     <div className={cls.card}>
-      {/* Label section */}
       <div className={cls.cardLabels}>
-        <div>Level: 1</div>
-        <div>Not Completed</div>
+        <div>Level: {card.level}</div>
+        <div>{card.completed ? "Completed" : "Not Completed"}</div>
       </div>
 
-      {/* Question title */}
-      <h5 className={cls.cardTitle}>Что такое JSX?</h5>
+      <h5 className={cls.cardTitle}>{card.question}</h5>
 
-      {/* Answer section */}
       <div className={cls.cardAnswers}>
         <label>short answer:</label>
-        <p className={cls.cardAnswer}>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti, nobis.
-        </p>
+        <p className={cls.cardAnswer}>{card.answer}</p>
       </div>
 
-      {/* View Button */}
-      <Button variant="contained" onClick={() => console.log("View clicked")}>
-        View
-      </Button>
+      <Button onClick={() => navigate(`/question/${card.id}`)}>View</Button>
     </div>
   );
 };
+export default QuestionCard;
+

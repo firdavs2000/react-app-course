@@ -1,12 +1,31 @@
-import {} from "react";
-import cls from "./HomePage.module.css"; // CSS fayl kerak bo‘lsa
-import { QuestionCard } from "../../Components/QuestionCard/QuestionCard"; // Yo‘lni loyihaga qarab tuzish kerak
+import { useState, useEffect } from "react";
+import QuestionCard from "../../Components/QuestionCard/QuestionCard";
+import { API_URL } from "../../constans";
+// import cls from "./HomePage.module.css";
 
 export const HomePage = () => {
+  const [questions, setQuestions] = useState([]);
+
+  const getQuestions = async () => {
+    try {
+      const response = await fetch(`${API_URL}/react`);
+      const questions = await response.json();
+      setQuestions(questions);
+      console.log("questions", questions);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getQuestions();
+  }, []);
+
   return (
-    <div className={cls.container}>
-      <h2>HomePage</h2>
-      <QuestionCard />
-    </div>
+    <>
+      {questions.map((card, index) => (
+        <QuestionCard card={card} key={index} />
+      ))}
+    </>
   );
 };
