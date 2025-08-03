@@ -61,20 +61,28 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* Light theme */
 @media (prefers-color-scheme: light) {
   :root {
     --main-bg-color: #fff;
     --text-color: #000;
-    --btn-bg-color: #383b3f;
-    --btn-text-color: #fff;
+
+    --btn-bg-color: #16444f;
+    --btn-text-color: #57C4DC;
+
+    --card-bg-color: #ebedf0;
   }
 }
 
+/* Dark theme */
 @media (prefers-color-scheme: dark) {
   :root {
-    --main-bg-color: #23272F;
+    --main-bg-color: #23272f;
     --text-color: #fff;
+
     --btn-bg-color: #383b3f;
     --btn-text-color: #fff;
+
+    --card-bg-color: #343a46;
   }
 }

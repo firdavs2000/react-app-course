@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { MainLayout } from './Components/MainLayout/MainLayout';
+import { HomePage } from './pages/HomePage/HomePage';
 
 const App = () => {
   return (
@@ -7,7 +8,7 @@ const App = () => {
       <Routes>
         {/* Main layout wraps all child pages */}
         <Route element={<MainLayout />}>
-          <Route path="/" element={<div>Home</div>} />
+          <Route path="/" element={<HomePage/>} />
           <Route path="/forbidden" element={<div>Forbidden</div>} />
           <Route path="/addquestion" element={<div>Add Question</div>} />
         </Route>
