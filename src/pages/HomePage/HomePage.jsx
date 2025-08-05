@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import QuestionCard from "../../Components/QuestionCard/QuestionCard";
 import { API_URL } from "../../constans";
+import { QuestionCardList } from "../../Components/QuestionCardList";
+import { Loader } from "../../Components/Loader";
 // import cls from "./HomePage.module.css";
 
 export const HomePage = () => {
@@ -23,9 +24,8 @@ export const HomePage = () => {
 
   return (
     <>
-      {questions.map((card, index) => (
-        <QuestionCard card={card} key={index} />
-      ))}
+    <Loader />
+    <QuestionCardList  cards={questions} />
     </>
   );
 };
