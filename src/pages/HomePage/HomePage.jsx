@@ -3,7 +3,8 @@ import { API_URL } from "../../constans";
 import { QuestionCardList } from "../../Components/QuestionCardList";
 import { Loader } from "../../Components/Loader";
 import { useFetch } from "../../hooks/useFetch";
-// import cls from "./HomePage.module.css";
+import { SearchInput } from "../../Components/SearchInput"
+import cls from "./HomePage.module.css";
 
 export const HomePage = () => {
   const [questions, setQuestions] = useState([]);
@@ -22,13 +23,18 @@ export const HomePage = () => {
     getQuestions("react");
   }, []);
 
-  const searchValueHandler = (e) => {
+  const onSearchChangeHandler = (e) => {
     setSearchValue(e.target.value);
   };
 
   return (
     <>
-      <input type="text" value={searchValue} onChange={searchValueHandler} />
+      <div className={cls.controlsContainer}>
+        <SearchInput
+          value={searchValue}
+          onChange={onSearchChangeHandler}
+        />
+      </div>
 
 
       {isLoading && <Loader />}
