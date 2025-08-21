@@ -23,5 +23,4 @@ export const QuestionCard = ({ card }) => {
     </div>
   );
 };
-export default QuestionCard;
 
