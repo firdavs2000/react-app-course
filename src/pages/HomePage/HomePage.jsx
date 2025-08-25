@@ -1,4 +1,4 @@
-import { useState, useEffect, } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { API_URL } from "../../constans";
 import { QuestionCardList } from "../../Components/QuestionCardList";
 import { Loader } from "../../Components/Loader";
@@ -8,7 +8,8 @@ import cls from "./HomePage.module.css";
 
 export const HomePage = () => {
   const [questions, setQuestions] = useState([]);
-  const [searchValue, setSearchValue] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
+  const [sortSelectValue, setSortValue] = useState("");
 
 
   const [getQuestions, isLoading, error] = useFetch(async (url) => {
@@ -19,12 +20,23 @@ export const HomePage = () => {
     return questions;
   });
 
+  const cards = useMemo(() => {
+    return questions.filter((d) =>
+      d.question.toLowerCase().includes(searchValue.trim().toLowerCase())
+    );
+  }, [questions, searchValue]);
+
+
   useEffect(() => {
-    getQuestions("react");
-  }, []);
+    getQuestions(`react?${sortSelectValue}`);
+  }, [sortSelectValue]);
 
   const onSearchChangeHandler = (e) => {
     setSearchValue(e.target.value);
+  };
+
+  const onSortChangeHandler = (e) => {
+    setSortValue(e.target.value);
   };
 
   return (
@@ -34,12 +46,21 @@ export const HomePage = () => {
           value={searchValue}
           onChange={onSearchChangeHandler}
         />
+        <select value={sortSelectValue} onChange={onSortChangeHandler} className={cls.select}>
+          <option value="">Sort By</option>
+          <hr />
+          <option value="_sort=level">Level ASC</option>
+          <option value="_sort=-level">Level DESC</option>
+          <option value="_sort=completed">completed ASC</option>
+          <option value="_sort=-completed">completed DESC</option>
+        </select>
       </div>
 
 
       {isLoading && <Loader />}
       {error && <p>{error}</p>}
-      <QuestionCardList cards={questions} />
+      {cards.length === 0 && <p className="cls.noCardsInfo"> No cards..</p>}
+      <QuestionCardList cards={cards} />
     </>
   );
 
