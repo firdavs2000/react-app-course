@@ -4,6 +4,7 @@
 
   --btn-bg-color: #383b3f;
   --btn-text-color: #fff;
+  --green-color: #219672;
 
   font-family: Inter;
   line-height: 1.5;
@@ -71,6 +72,7 @@ button:focus-visible {
     --btn-text-color: #fff;
 
     --card-bg-color: #ebedf0;
+     --green-color: #219672;
   }
 }
 
@@ -84,5 +86,6 @@ button:focus-visible {
     --btn-text-color: #57C4DC;
 
     --card-bg-color: #343a46;
+     --green-color: #219672;
   }
 }

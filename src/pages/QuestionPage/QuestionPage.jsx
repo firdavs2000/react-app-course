@@ -72,6 +72,7 @@ export const QuestionPage = () => {
     return (
         <>
             {isCardLoading && <Loader />}
+
             {card !== null && (
                 <div className={cls.container}>
                     <div className={cls.cardLabels}>
