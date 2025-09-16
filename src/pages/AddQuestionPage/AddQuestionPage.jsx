@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { Loader } from "../../Components/Loader"
 import { API_URL } from "../../constans";
 import {  delayFn } from "../../helpers/delayFn"
+import { QuestionForm } from '../../Components/QuestionForm';
 
 
 const createCardAction = async (_prevState, formData) => {
@@ -54,99 +55,9 @@ export const AddQuestionPage = () => {
             {isPending && <Loader />}
             <h1 className={cls.formTitle}>Add new question</h1>
             <div className={cls.formContainer}>
-                <form action={formAction} className={cls.form}>
-                    {/* Question */}
-                    <div className={cls.formControl}>
-                        <label htmlFor="questionField">Question:</label>
-                        <textarea
-                            defaultValue={formState?.question || ""}
-                            name="question"
-                            id="questionField"
-                            cols="30"
-                            rows="2"
-                            required
-                            placeholder="Please enter a question"
-                        ></textarea>
-                    </div>
-
-                    {/* Answer */}
-                    <div className={cls.formControl}>
-                        <label htmlFor="answerField">Answer:</label>
-                        <textarea
-                            defaultValue={formState?.answer || ""}
-                            name="answer"
-                            id="answerField"
-                            cols="30"
-                            rows="2"
-                            required
-                            placeholder="Please enter a short answer"
-                        ></textarea>
-                    </div>
-
-                    {/* Description */}
-                    <div className={cls.formControl}>
-                        <label htmlFor="descriptionField">Description:</label>
-                        <textarea
-                            defaultValue={formState?.description || ""}
-                            name="description"
-                            id="descriptionField"
-                            cols="30"
-                            rows="5"
-                            required
-                            placeholder="Please enter a full description"
-                        ></textarea>
-                    </div>
-
-                    {/* Resources */}
-                    <div className={cls.formControl}>
-                        <label htmlFor="resourcesField">Resources:</label>
-                        <textarea
-                            defaultValue={formState?.resources || ""}
-                            name="resources"
-                            id="resourcesField"
-                            cols="30"
-                            rows="5"
-                            placeholder="Please enter resources separated by commas"
-                        ></textarea>
-                    </div>
-
-                    {/* Level */}
-                    <div className={cls.formControl}>
-                        <label htmlFor="levelField">Level:</label>
-                        <select
-                            name="level"
-                            id="levelField"
-                            defaultValue={formState?.level || ""}
-                            required
-                        >
-                            <option value="" disabled>
-                                Question level
-                            </option>
-                            <option value="1">1 – easiest</option>
-                            <option value="2">2 – medium</option>
-                            <option value="3">3 – hardest</option>
-                        </select>
-                    </div>
-
-                    {/* Clear form checkbox */}
-                    <label htmlFor="clearFormField" className={cls.clearFormControl}>
-                        <input
-                            className={cls.checkbox}
-                            type="checkbox"
-                            name="clearForm"
-                            id="clearFormField"
-                            defaultChecked={formState?.clearForm || false}
-                            aria-label="Clear form after submitting"
-                        />
-                        <span>Clear form after submitting?</span>
-                    </label>
-
-                    {/* Submit button */}
-                    <Button type="submit" isDisabled={isPending}>
-                        Add question
-                    </Button>
-                </form>
+               <QuestionForm formAction={formAction} state={formState} isPending={isPending} submitBtnText=" Add Question "/>
             </div>
         </>
     );
 };
+export default AddQuestionPage;
