@@ -1,12 +1,10 @@
-import { useActionState } from 'react';
-import { Button } from '../../Components/Button/Button';
 import cls from './AddQuestionPage.module.css';
 import { toast } from 'react-toastify';
-import { Loader } from "../../Components/Loader"
+import { Loader } from "../../Components/Loader";
 import { API_URL } from "../../constans";
-import {  delayFn } from "../../helpers/delayFn"
+import { delayFn } from "../../helpers/delayFn";
 import { QuestionForm } from '../../Components/QuestionForm';
-
+import { useActionState } from "react";
 
 const createCardAction = async (_prevState, formData) => {
     try {
@@ -14,12 +12,15 @@ const createCardAction = async (_prevState, formData) => {
 
         // Form ma'lumotlarini obyektga aylantirish
         const newQuestion = Object.fromEntries(formData);
-        const resources = newQuestion.resources?.trim();
+        const resources = newQuestion.resources?.trim() || "";
         const isClearForm = newQuestion.clearForm === "on";
 
         // So‘rov yuborish
         const response = await fetch(`${API_URL}/react`, {
             method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
             body: JSON.stringify({
                 question: newQuestion.question,
                 answer: newQuestion.answer,
@@ -31,9 +32,8 @@ const createCardAction = async (_prevState, formData) => {
             }),
         });
 
-        // 404 holati
-        if (response.status === 404) {
-            throw new Error("Resource not found (404)");
+        if (!response.ok) {
+            throw new Error(`Request failed with status ${response.status}`);
         }
 
         const question = await response.json();
@@ -43,21 +43,28 @@ const createCardAction = async (_prevState, formData) => {
 
     } catch (error) {
         console.error("Xatolik yuz berdi:", error);
-        toast.error(`Error: ${error.message}`);
-        return {}; // Xatolik bo‘lsa, forma tozalansin
+        toast.error(`Error: ${error.message || "Something went wrong"}`);
+        return {}; 
     }
 };
 
 export const AddQuestionPage = () => {
     const [formState, formAction, isPending] = useActionState(createCardAction, { clearForm: true });
+
     return (
         <>
             {isPending && <Loader />}
             <h1 className={cls.formTitle}>Add new question</h1>
             <div className={cls.formContainer}>
-               <QuestionForm formAction={formAction} state={formState} isPending={isPending} submitBtnText=" Add Question "/>
+                <QuestionForm 
+                    formAction={formAction} 
+                    state={formState} 
+                    isPending={isPending} 
+                    submitBtnText=" Add Question "
+                />
             </div>
         </>
     );
 };
+
 export default AddQuestionPage;

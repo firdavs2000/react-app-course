@@ -3,7 +3,7 @@ import cls from "./QuestionPage.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { Badge } from "../../Components/Badge";
 import { Button } from "../../Components/Button/Button";
-import { Loader, SmallLoader } from "../../Components/Loader/Loader"
+import { Loader, SmallLoader } from "../../Components/Loader"
 import { API_URL } from "../../constans"
 import { useFetch } from "../../hooks/useFetch";
 

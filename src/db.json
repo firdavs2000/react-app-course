@@ -15,7 +15,7 @@
     },
     {
       "id": "2",
-      "question": "Что такое JSX?",
+      "question": "Что такое JSX? ",
       "answer": "JSX — это синтаксическое расширение JavaScript для React.",
       "description": "JSX позволяет писать HTML-подобный код в JavaScript, который затем транспилируется в вызовы `React.createElement`. Он облегчает создание и визуальное представление структуры компонентов.",
       "resources": [
@@ -23,7 +23,7 @@
       ],
       "level": 2,
       "completed": false,
-      "editDate": "03.02.2025, 20:25"
+      "editDate": "17.09.2025, 16:07"
     },
     {
       "id": "3",
@@ -564,7 +564,6 @@
       "resources": [],
       "level": 1,
       "completed": false
-    },
-
+    }
   ]
 }
