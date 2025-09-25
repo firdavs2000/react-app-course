@@ -5,6 +5,7 @@ import { Button } from "../Button/Button"; // MUI dan Button
 import ReactLogo from "../../assets/react.svg"; // Rasmni moslashtiring
 import { useAuth } from "../../hooks/useAuth";
 import { AUTH_STORAGE } from "../../constans";
+import { ThemeToggler } from "../../features/ThemeToggler/ThemeToggler";
 
 export const Header = () => {
     const navigate = useNavigate();
@@ -22,6 +23,7 @@ export const Header = () => {
       </p>
 
       <div className={cls.headerButtons}>
+        <ThemeToggler/>
         {isAuth && (
           <Button onClick={() => navigate("/addquestion")}>Add</Button>
         )}
@@ -33,7 +35,3 @@ export const Header = () => {
     </header>
   );
 };
-
-
-
-

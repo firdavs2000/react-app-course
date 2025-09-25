@@ -1,5 +1,5 @@
 :root {
-  --main-bg-color: #23272F;
+  --main-bg-color: #fff;
   --text-color: #fff;
 
   --btn-bg-color: #383b3f;
@@ -62,6 +62,17 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.darkLayout {
+  --main-bg-color: #23272f;
+  --text-color: #fff;
+
+  --btn-bg-color: #16444f;
+  --btn-text-color: #57C4DC;
+
+  --card-bg-color: #343a46;
+  --green-color: #219672;
+}
+
 /* Light theme */
 @media (prefers-color-scheme: light) {
   :root {
@@ -72,7 +83,7 @@ button:focus-visible {
     --btn-text-color: #fff;
 
     --card-bg-color: #ebedf0;
-     --green-color: #219672;
+    --green-color: #219672;
   }
 }
 
@@ -86,6 +97,6 @@ button:focus-visible {
     --btn-text-color: #57C4DC;
 
     --card-bg-color: #343a46;
-     --green-color: #219672;
+    --green-color: #219672;
   }
 }
